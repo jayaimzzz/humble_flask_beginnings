@@ -2,14 +2,9 @@ __author__ = "jayaimzzz"
 
 from tinydb import TinyDB, Query
 from flask import render_template, Flask
-from jinja2 import Template, Environment, PackageLoader, select_autoescape
 import random
 
-env = Environment(
-    loader=PackageLoader('app', 'templates'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
-template = env.get_template('recipe.html')
+
 app = Flask(__name__)
 db = TinyDB('db.json')
 recipes = db.all()
@@ -30,7 +25,5 @@ def index():
         "ingredients":ingredients,
         "url":url
     }
-    return render_template(template, recipe=recipe)
-
-
+    return render_template("recipe.html", recipe=recipe)
 
