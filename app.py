@@ -23,10 +23,12 @@ def index():
     instructions = [step for step in instructions if step]
     ingredients = [item for item in ingredients if item]
     name = random_recipe.get("name")
+    url = random_recipe.get("url")
     recipe = {
         "name":name,
         "instructions":instructions,
-        "ingredients":ingredients
+        "ingredients":ingredients,
+        "url":url
     }
     return render_template(template, recipe=recipe)
 
